@@ -128,6 +128,8 @@ def _get_command(path, command_directory):
     if len(contents) != 2:
       # Old/incomplete file or something; silently ignore it.
       return None
+    # for gcc, remove unknown parameters
+    contents[0] = contents[0].replace("-fno-canonical-system-headers ", "")
     return '''{
         "directory": "%s",
         "command": "%s",
